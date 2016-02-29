@@ -5,7 +5,7 @@ class Tribe
 		@name = options[:name]
 		@members = options[:members]
 
-		puts "#{@name} was created."
+		puts "#{@name} was created.".green
 	end
 
 	def name

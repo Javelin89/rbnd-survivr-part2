@@ -19,7 +19,8 @@ class Game
 
 	def individual_immunity_challenge
 		immune_contestant = @tribes[0].members.sample
-		puts "#{immune_contestant} is immune"
+		puts
+		puts "#{immune_contestant} is immune".light_grey
 		eliminated_contestant = @tribes[0].tribal_council(immune_contestant)
 	end
 

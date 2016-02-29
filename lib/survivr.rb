@@ -22,30 +22,36 @@ require_relative "jury"
 
 #This is where you will write your code for the three phases
 def phase_one
+	puts
+	puts "Welcome to a new round of Survivr! - Round One".light_blue
 	8.times do 
 		losing_tribe = @borneo.immunity_challenge
 		eliminated_contestant = losing_tribe.tribal_council
 		losing_tribe.members.delete(eliminated_contestant)
-		puts "#{eliminated_contestant} from #{losing_tribe.name} was eliminated!"
+		puts "#{eliminated_contestant} from #{losing_tribe.name} was eliminated!".red
 	end
 end
 
 def phase_two
+	puts
+	puts "After 8 eliminiations, we continue into round two!".light_blue
 	@borneo.clear_tribes
 	@borneo.tribes << @merge_tribe
 	3.times do 
 		eliminated_contestant = @borneo.individual_immunity_challenge
 		@borneo.tribes[0].members.delete(eliminated_contestant)
-		puts "#{eliminated_contestant} was eliminated"
+		puts "#{eliminated_contestant} was eliminated".red
 	end
 end
 
 def phase_three
+	puts
+	puts "And now round three! Who will be the winner?".light_blue
 	7.times do 
 		eliminated_contestant = @borneo.individual_immunity_challenge
 		@borneo.tribes[0].members.delete(eliminated_contestant)
 		@jury.add_member(eliminated_contestant)
-		puts "#{eliminated_contestant} was eliminated and added to the Jury"
+		puts "#{eliminated_contestant} was eliminated and added to the Jury".green
 	end
 end
 

@@ -20,7 +20,8 @@ class Jury
 				@final_votes[vote] = 1
 			end
 
-			puts "#{member} voted for #{vote}"
+			puts
+			puts "#{member} voted for #{vote}".yellow
 		end
 		return @final_votes
 	end
@@ -34,7 +35,8 @@ class Jury
 	def announce_winner(final_votes)
 		self.report_votes(final_votes)
 		winner = final_votes.max_by{|k,v| v}
-		puts "#{winner.first} won the game"
+		puts
+		puts "#{winner.first} won the game".green
 	end
 
 end

@@ -48,7 +48,8 @@ def phase_three
 	puts
 	puts "And now round three! Who will be the winner?".light_blue
 	7.times do 
-		eliminated_contestant = @borneo.individual_immunity_challenge
+		immune_player = @borneo.individual_immunity_challenge
+		eliminated_contestant = @borneo.tribes[0].tribal_council(immune: immune_player)
 		@borneo.tribes[0].members.delete(eliminated_contestant)
 		@jury.add_member(eliminated_contestant)
 		puts "#{eliminated_contestant} was eliminated and added to the Jury".green
@@ -63,6 +64,8 @@ end
  phase_two #3 more eliminations
  @jury = Jury.new
  phase_three #7 elminiations become jury members
- finalists = @merge_tribe.members #set finalists
+ finalists = @merge_tribe.members #set finalist
  vote_results = @jury.cast_votes(finalists) #Jury members report votes @jury.report_votes(vote_results) #Jury announces their votes
- @jury.announce_winner(vote_results) #Jury announces final winner
+ winner = @jury.announce_winner(vote_results) #Jury announces final winner
+ puts "And the winner is..."
+ puts "#{winner.name.upcase}!".red

@@ -1,5 +1,6 @@
 class Tribe
-	attr_accessor :members, :name
+	attr_accessor :name
+	attr_reader :members
 
 	def initialize(options={})
 		@name = options[:name]
@@ -12,11 +13,11 @@ class Tribe
 		@name
 	end
 
-	def tribal_council(immune = nil) #take an optional immune candidate and returns an eliminated candidate
-        eliminated_contestant = immune
-        until eliminated_contestant != immune do
-            eliminated_contestant = @members.sample
-        end
-        return eliminated_contestant
-    end
+	def to_s
+		@name.to_s
+	end
+
+    def tribal_council(immune: nil)
+  		@members.reject { |member| member == immune }.sample
+	end
 end

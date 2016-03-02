@@ -15,17 +15,14 @@ class TestTribe < Minitest::Test
   end
 
   def test_tribe_has_name
-    skip
     assert_respond_to @coyopa, :name
   end
 
    def test_tribe_has_members
-    skip
      assert_respond_to @coyopa, :members
    end
   #
    def test_initialize_puts_tribe_creation
-    skip
      contestants = ["person_one", "person_two"]
      contestants.map!{ |contestant| Contestant.new(contestant) }
      output = capture_io do
@@ -35,7 +32,6 @@ class TestTribe < Minitest::Test
    end
   #
    def test_tribe_to_s
-    skip
      assert_output(@coyopa.name) {print "#{@coyopa}"}
    end
   #

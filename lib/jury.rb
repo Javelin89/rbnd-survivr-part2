@@ -2,9 +2,9 @@ class Jury
 
 	attr_accessor :members, :final_votes
 	
-	def initialize(members = Array.new, final_votes = Hash.new)
+	def initialize(members = Array.new)
 		@members = members
-		@final_votes = final_votes
+		@final_votes = Hash.new
 	end
 
 	def add_member(member)
@@ -13,15 +13,13 @@ class Jury
 
 	def cast_votes(finalists)
 		@members.each do |member|
-			vote = finalists.shuffle.first
+			vote = finalists.sample
 			if @final_votes.has_key?(vote)
 				@final_votes[vote] += 1
 			else
 				@final_votes[vote] = 1
 			end
-
-			puts
-			puts "#{member} voted for #{vote}".yellow
+			puts "#{member} voted for #{vote}"
 		end
 		return @final_votes
 	end
@@ -33,10 +31,7 @@ class Jury
 	end
 
 	def announce_winner(final_votes)
-		self.report_votes(final_votes)
-		winner = final_votes.max_by{|k,v| v}
-		puts
-		puts "#{winner.first} won the game".green
+		winner = final_votes.max_by{|k,v| v}.first
 	end
 
 end

@@ -4,7 +4,6 @@ class Jury
 	
 	def initialize(members = Array.new)
 		@members = members
-		@final_votes = Hash.new
 	end
 
 	def add_member(member)
@@ -12,16 +11,22 @@ class Jury
 	end
 
 	def cast_votes(finalists)
+		final_votes = Hash.new
+		finalists.each do |finalist|
+			final_votes[finalist] = 0
+		end
+
+
 		@members.each do |member|
 			vote = finalists.sample
-			if @final_votes.has_key?(vote)
-				@final_votes[vote] += 1
+			if final_votes.has_key?(vote)
+				final_votes[vote] += 1
 			else
-				@final_votes[vote] = 1
+				final_votes[vote] = 1
 			end
 			puts "#{member} voted for #{vote}"
 		end
-		return @final_votes
+		return final_votes
 	end
 
 	def report_votes(final_votes)
